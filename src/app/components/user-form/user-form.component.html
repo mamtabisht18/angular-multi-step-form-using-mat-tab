@@ -128,14 +128,14 @@
 
 <ng-template #footerBtn>
     <div class="reset-btn">
-        <button type="button" mat-button color="primary" (click)="prev()" *ngIf="selectedIndex > 0" class="prev">
+        <button type="button" mat-raised-button color="primary" (click)="prev()" *ngIf="selectedIndex > 0" class="prev">
             <mat-icon>arrow_left</mat-icon>
             Previous
         </button>
-        <button type="button" mat-button color="primary" (click)="next()" *ngIf="(maxIndex-1) > selectedIndex" class="next">
+        <button type="button" mat-raised-button color="primary" (click)="next()" *ngIf="(maxIndex-1) > selectedIndex" class="next">
             Next <mat-icon>arrow_right</mat-icon>
         </button>
-        <button type="button" mat-button color="primary" (click)="submit()" *ngIf="(maxIndex-1) ===  selectedIndex" class="submit">Submit</button>
+        <button type="button" mat-raised-button color="primary" (click)="submit()" *ngIf="(maxIndex-1) ===  selectedIndex" class="submit">Submit</button>
     </div>
 </ng-template>
 
