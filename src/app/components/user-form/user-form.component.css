@@ -1,0 +1,51 @@
+.form-wrapper{
+    padding: 20px;
+    text-align: left;
+}
+
+.form-group-cls{
+    border-radius: 4px;
+    padding: 16px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),
+                0 1px 1px 0 rgba(0,0,0,.14),
+                0 1px 3px 0 rgba(0,0,0,.12);
+}
+
+.form-title{
+    font-weight: bold;
+    font-size: 22px;
+    padding-bottom: 30px;
+}
+
+.user-option{
+    padding: 5px;
+}
+
+.form-field{
+    padding-right: 10px;
+}
+
+.w100{
+    width: 100%;
+}
+
+.reset-btn{
+    padding: 20px;
+}
+
+.footer-btn{
+    display: inline-block;
+}
+.prev{
+    float: left;
+}
+.next{
+    float: right;
+}
+.submit{
+    float: right;
+}
+
+.address-confirm-wrapper{
+    padding: 10px;
+}

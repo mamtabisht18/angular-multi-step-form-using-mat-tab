@@ -1,0 +1,141 @@
+<div class="form-wrapper">
+    <form [formGroup]="myForm">
+        <mat-tab-group [(selectedIndex)]="selectedIndex" #tabGroup>
+                <mat-tab label="Delivery">
+                    <ng-container [ngTemplateOutlet]="resetBtn"></ng-container>
+                    <div formGroupName="0">
+                        <div class="form-group-cls">
+                            <div class="form-title">
+                                Billing Address
+                            </div>
+                            <div>
+                                <mat-form-field class="form-field">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput formControlName="firstName">
+                                </mat-form-field>
+    
+                                <mat-form-field class="form-field">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput formControlName="lastName">
+                                </mat-form-field>
+                            </div>
+                            
+                            <div>
+                                <mat-form-field class="form-field w100">
+                                    <mat-label>Address 1</mat-label>
+                                    <input matInput formControlName="addressLine1">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="form-field w100">
+                                    <mat-label>Address 2</mat-label>
+                                    <input matInput formControlName="addressLine2">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="address-confirm-wrapper">
+                            <mat-checkbox [checked]="isAddressSame === 'Y'" (change)="showAddress()">Shipping Address is same as Billing Address</mat-checkbox>
+                        </div>
+                        <div class="form-group-cls" *ngIf="isAddressSame === 'N'">
+                            <div class="form-title">
+                                Shipping Address
+                            </div>
+                            
+                            <div>
+                                <mat-form-field class="form-field w100">
+                                    <mat-label>Address 1</mat-label>
+                                    <input matInput formControlName="shippingAddressLine1">
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="form-field w100">
+                                    <mat-label>Address 2</mat-label>
+                                    <input matInput formControlName="shippingAddressLine2">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <ng-container [ngTemplateOutlet]="footerBtn"></ng-container>
+                </mat-tab>
+                <mat-tab label="Shipping" [disabled]="isShiipingDisabled">
+                    <ng-container [ngTemplateOutlet]="resetBtn"></ng-container>
+                    <div formGroupName="1" class="form-group-cls">
+                        <div class="form-title">
+                            Shipping Charges
+                        </div>
+                        <div>
+                            <mat-radio-group aria-label="Select an option" formControlName="shippingAddress">
+                                <div class="user-option">
+                                    <mat-radio-button value="1">Free Shipping , 5-7 Working days</mat-radio-button>
+                                </div>
+                                <div class="user-option">
+                                    <mat-radio-button value="2">Rs 200, One Day Gurantee Delivery</mat-radio-button>
+                                </div>
+                                <div class="user-option">
+                                    <mat-radio-button value="3">Rs 100, Two Day Gurantee Delivery</mat-radio-button>
+                                </div>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    <ng-container [ngTemplateOutlet]="footerBtn"></ng-container>
+                </mat-tab>
+                <mat-tab label="Payment" [disabled]="isPaymentDisabled">
+                    <ng-container [ngTemplateOutlet]="resetBtn"></ng-container>
+                    <div formGroupName="2" class="form-group-cls">
+                        <div class="form-title">
+                            Card Details
+                        </div>
+                        <div>
+                            <mat-form-field class="form-field">
+                                <mat-label>Card Number</mat-label>
+                                <input 
+                                matInput
+                                formControlName="cardNumber"
+                                [value]="myForm.get('2.cardNumber').value | cardSeperator : 16:4"
+                                maxlength="19">
+                              </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="form-field">
+                                <mat-label>Expiry Date</mat-label>
+                                <input matInput formControlName="cardExpiryDate">
+                              </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="form-field">
+                                <mat-label>CVV</mat-label>
+                                <input  matInput formControlName="cardCvvNumber" maxlength="3" >
+                              </mat-form-field>
+                        </div>
+                    </div>
+                    <ng-container [ngTemplateOutlet]="footerBtn"></ng-container>
+                </mat-tab>
+        
+        </mat-tab-group>
+        </form>
+</div>
+
+
+<ng-template #resetBtn>
+    <div class="reset-btn">
+        <button type="button" mat-raised-button (click)="reset()">
+            <mat-icon>close</mat-icon>
+            Reset
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #footerBtn>
+    <div class="reset-btn">
+        <button type="button" mat-button color="primary" (click)="prev()" *ngIf="selectedIndex > 0" class="prev">
+            <mat-icon>arrow_left</mat-icon>
+            Previous
+        </button>
+        <button type="button" mat-button color="primary" (click)="next()" *ngIf="(maxIndex-1) > selectedIndex" class="next">
+            Next <mat-icon>arrow_right</mat-icon>
+        </button>
+        <button type="button" mat-button color="primary" (click)="submit()" *ngIf="(maxIndex-1) ===  selectedIndex" class="submit">Submit</button>
+    </div>
+</ng-template>
+
